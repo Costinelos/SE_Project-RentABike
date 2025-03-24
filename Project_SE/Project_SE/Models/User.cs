@@ -1,6 +1,6 @@
 ﻿namespace Project_SE.Models
 {
-    public class Users
+    public class User
     {
     }
 }
