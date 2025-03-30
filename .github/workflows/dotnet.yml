@@ -11,6 +11,11 @@ on:
 
 jobs:
   build:
+    defaults:
+    run:
+      shell: bash
+      working-directory: ./Project_SE
+      
 
     runs-on: ubuntu-latest
 
