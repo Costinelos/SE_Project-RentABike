@@ -686,7 +686,7 @@ $.extend( $.validator, {
 		},
 
 		clean: function( selector ) {
-			return this.currentForm ? $(this.currentForm).find(selector)[0] : $(selector)[0];
+			return this.currentForm ? $(this.currentForm).find(selector)[0] : $.find(selector)[0];
 		},
 
 		errors: function() {
