@@ -11,6 +11,10 @@ on:
 
 jobs:
   build:
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./Project_SE
     runs-on: windows-latest
     permissions:
       contents: read #This is required for actions/checkout
