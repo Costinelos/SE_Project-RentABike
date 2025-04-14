@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Project_SE.Models
+﻿namespace Project_SE.Models
 {
-    public class Bike : Controller
+    public class Bike
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public int Id { get; set; }
+        public string Model { get; set; } = string.Empty; // Evită warning-uri
+        public string Type { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public string Status { get; set; } = "Disponibil"; // Valoare implicită
     }
 }
