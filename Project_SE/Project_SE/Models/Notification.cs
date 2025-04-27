@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace Project_SE.Models
+public class Notification
 {
-    public class Notification : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
-    }
+    public int Id { get; set; }
+
+    [Required]
+    public string Message { get; set; }
+
+    [Required]
+    public string UserId { get; set; }
+
+    public bool IsRead { get; set; } = false;
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+   
+    public virtual User User { get; set; }
 }

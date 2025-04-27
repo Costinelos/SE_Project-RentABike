@@ -1,12 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Project_SE.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace Project_SE.Models
+public class Reservation
 {
-    public class Reservation : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
-    }
+    public int Id { get; set; }
+
+    [Required]
+    public string UserId { get; set; }
+
+    [Required]
+    public int BikeId { get; set; }
+
+    [Required]
+    public DateTime StartDate { get; set; }
+
+    [Required]
+    public DateTime EndDate { get; set; }
+
+    [Required]
+    public string PaymentStatus { get; set; } = "Pending"; // Pending, Completed, Failed
+
+    public decimal TotalPrice { get; set; }
+
+
+    public virtual Bike Bike { get; set; }
+    public virtual User User { get; set; }
 }
