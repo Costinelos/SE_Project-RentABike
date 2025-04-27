@@ -14,6 +14,7 @@ namespace Project_SE
            
             builder.Services.AddControllersWithViews();
 
+
             
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -32,6 +33,7 @@ namespace Project_SE
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
 
             var app = builder.Build();
 
