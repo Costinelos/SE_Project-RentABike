@@ -1,6 +1,8 @@
-﻿namespace Project_SE.Models
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+
+public class User : IdentityUser
 {
-    public class User
-    {
-    }
+    [Required]
+    public string Role { get; set; } = "User"; 
 }

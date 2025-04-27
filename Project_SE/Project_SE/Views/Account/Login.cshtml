@@ -1,7 +1,8 @@
-﻿@{
+﻿@model Project_SE.Models.LoginViewModel
+@{
     ViewData["Title"] = "Login";
 }
-<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
@@ -10,25 +11,29 @@
                     <h3><i class="fas fa-sign-in-alt me-2"></i>Autentificare</h3>
                 </div>
                 <div class="card-body p-4">
-                    <form>
+                    <form asp-action="Login" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Parolă</label>
-                            <input type="password" class="form-control" id="password" required>
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="remember">
-                            <label class="form-check-label" for="remember">Ține-mă minte</label>
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label"></label>
                         </div>
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">Autentificare</button>
-                            <a href="/Account/Register" class="btn btn-link">Nu ai cont? Înregistrează-te</a>
+                            <a asp-action="Register" class="btn btn-link">Nu ai cont? Înregistrează-te</a>
                         </div>
                     </form>
                 </div>
@@ -37,3 +42,8 @@
     </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
