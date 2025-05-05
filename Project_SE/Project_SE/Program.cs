@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Project_SE.Data;
+using Project_SE.Interfaces;
 using Project_SE.Models;
+using Project_SE.Repository;
+using Project_SE.Services;
 
 namespace Project_SE
 {
@@ -14,8 +17,14 @@ namespace Project_SE
            
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddScoped<IBikeService, BikeService>();
 
-            
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
+            });
+
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
