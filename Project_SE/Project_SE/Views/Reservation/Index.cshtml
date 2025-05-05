@@ -1,5 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Project_SE.Models.Reservation>
+
 @{
+    ViewData["Title"] = "Rezervările mele";
 }
+
+<h2>Rezervările mele</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Bicicletă</th>
+            <th>Dată început</th>
+            <th>Dată sfârșit</th>
+            <th>Preț total</th>
+            <th>Status rezervare</th>
+            <th>Status plată</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Bike.Model</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.EndDate.ToShortDateString()</td>
+                <td>@item.TotalPrice.ToString("C")</td>
+                <td>
+                    <span class="badge @(item.ReservationStatus == "Approved" ? "bg-success" :
+                                      item.ReservationStatus == "Rejected" ? "bg-danger" : "bg-warning")">
+                        @item.ReservationStatus
+                    </span>
+                </td>
+                <td>
+                    <span class="badge @(item.PaymentStatus == "Completed" ? "bg-success" :
+                                      item.PaymentStatus == "Failed" ? "bg-danger" : "bg-warning")">
+                        @item.PaymentStatus
+                    </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

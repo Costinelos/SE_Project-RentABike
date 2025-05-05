@@ -27,13 +27,5 @@ namespace Project_SE.Models
 
         [StringLength(500, ErrorMessage = "Descrierea nu poate depăși 500 de caractere")]
         public string Description { get; set; } = string.Empty;
-
-        public bool IsAvailable =>
-       Status == "Disponibil" &&
-       !Reservations.Any(r =>
-           r.ReservationStatus == "Approved" &&
-           r.PaymentStatus == "Completed");
-
-        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }
