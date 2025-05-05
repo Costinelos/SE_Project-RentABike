@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Project_SE.Models.Bike>
+
 @{
+    ViewData["Title"] = "Admin Panel - Biciclete";
 }
+
+<h1>Administrare Biciclete</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Adaugă bicicletă nouă</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Tip</th>
+            <th>Preț</th>
+            <th>Status</th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>
+                    <span class="badge @(item.Status == "Disponibil" ? "bg-success" : "bg-warning")">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
