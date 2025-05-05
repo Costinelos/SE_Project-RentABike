@@ -15,9 +15,19 @@ namespace Project_SE.Controllers
         }
 
         // GET: Bike
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var bikes = await _bikeService.GetAllBikesAsync();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                searchString = searchString.ToLower();
+                bikes = bikes.Where(b =>
+                    b.Model.ToLower().Contains(searchString) ||
+                    b.Type.ToLower().Contains(searchString))
+                    .ToList();
+            }
+
             return View(bikes);
         }
 
