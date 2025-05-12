@@ -1,4 +1,4 @@
-﻿using Project_SE.Data;
+/*﻿using Project_SE.Data;
 using Project_SE.Models;
 using Microsoft.EntityFrameworkCore;
 using Project_SE.Models;
@@ -45,3 +45,4 @@ public class ProfileRepository : IProfileRepository
         }
     }
 }
+*/
