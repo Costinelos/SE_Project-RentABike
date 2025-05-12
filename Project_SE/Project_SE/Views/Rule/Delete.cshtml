@@ -1,0 +1,22 @@
+﻿@model Project_SE.Models.Rule
+
+@{
+    ViewData["Title"] = "Șterge Regulă";
+}
+
+<div class="container fade-in mt-4">
+    <h1 class="text-center text-danger">Confirmare Ștergere Regulă</h1>
+
+    <div class="alert alert-warning mt-4">
+        <h4 class="alert-heading">Sigur vrei să ștergi această regulă?</h4>
+        <p><strong>@Model.Title</strong></p>
+        <p>@Model.Description</p>
+
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="RuleID" />
+            <button type="submit" class="btn btn-danger">Șterge</button>
+            <a asp-action="Index" class="btn btn-secondary">Renunță</a>
+        </form>
+    </div>
+</div>
