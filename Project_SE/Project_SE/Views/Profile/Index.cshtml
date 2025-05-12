@@ -1,0 +1,19 @@
+﻿@model Project_SE.Models.Profile
+
+@{
+    ViewData["Title"] = "Profilul meu";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h3>Detalii profil:</h3>
+    <p><strong>Nume complet:</strong> @Model.User.FullName</p>
+    <p><strong>Avatar:</strong> <img src="@Model.AvatarPath" alt="Avatar" width="100" height="100" /></p>
+    <p><strong>Bio:</strong> @Model.Bio</p>
+    <p><strong>Website:</strong> <a href="@Model.Website">@Model.Website</a></p>
+    <p><strong>Locație:</strong> @Model.Location</p>
+    <p><strong>Data nașterii:</strong> @Model.Birthdate?.ToString("dd/MM/yyyy")</p>
+</div>
+
+<a href="@Url.Action("Edit")">Editează Profilul</a>
