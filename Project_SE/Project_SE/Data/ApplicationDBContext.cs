@@ -14,7 +14,7 @@ namespace Project_SE.Data
         public DbSet<Bike> Bikes { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-
+        public DbSet<Rule> Rules { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

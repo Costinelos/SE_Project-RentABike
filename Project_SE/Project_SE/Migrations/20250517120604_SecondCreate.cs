@@ -5,7 +5,7 @@
 namespace Project_SE.Migrations
 {
     /// <inheritdoc />
-    public partial class SSSS : Migration
+    public partial class SecondCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

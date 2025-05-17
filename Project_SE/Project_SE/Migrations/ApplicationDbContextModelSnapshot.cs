@@ -223,7 +223,7 @@ namespace Project_SE.Migrations
                     b.ToTable("Bikes");
                 });
 
-            modelBuilder.Entity("Reservation", b =>
+            modelBuilder.Entity("Project_SE.Models.Reservation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,13 +231,26 @@ namespace Project_SE.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdminNotes")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("BikeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReservationStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -246,6 +259,9 @@ namespace Project_SE.Migrations
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -258,6 +274,28 @@ namespace Project_SE.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("Project_SE.Models.Rule", b =>
+                {
+                    b.Property<int>("RuleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RuleID"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("RuleID");
+
+                    b.ToTable("Rules");
                 });
 
             modelBuilder.Entity("User", b =>
@@ -391,7 +429,7 @@ namespace Project_SE.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Reservation", b =>
+            modelBuilder.Entity("Project_SE.Models.Reservation", b =>
                 {
                     b.HasOne("Project_SE.Models.Bike", "Bike")
                         .WithMany()
