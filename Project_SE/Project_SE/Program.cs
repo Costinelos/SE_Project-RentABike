@@ -19,7 +19,9 @@ namespace Project_SE
 
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IBikeService, BikeService>();
-        
+
+            builder.Services.AddScoped<IRuleRepository, RuleRepository>();
+            builder.Services.AddScoped<IRuleService, RuleService>();
             builder.Services.AddScoped<IReservationService, ReservationService>();
             builder.Services.AddScoped<IRepository<Reservation>, Repository<Reservation>>();
 
