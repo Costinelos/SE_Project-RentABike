@@ -1,5 +1,107 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "RentABike - Contact";
 }
+
+<section class="hero-section text-white text-center py-5" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-4">Contactează-ne</h1>
+        <p class="lead mb-5">Ai întrebări sau ai nevoie de ajutor? Echipa noastră este aici pentru tine!</p>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <h2 class="mb-4">Trimite-ne un mesaj</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nume</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subiect</label>
+                        <select class="form-select" id="subject">
+                            <option selected>Alege o opțiune</option>
+                            <option>Întrebare despre închiriere</option>
+                            <option>Problemă cu rezervarea</option>
+                            <option>Sugestii/Feedback</option>
+                            <option>Altele</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Mesaj</label>
+                        <textarea class="form-control" id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Trimite mesaj</button>
+                </form>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <h2 class="mb-4">Date de contact</h2>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-map-marker-alt fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Adresă</h5>
+                                <p class="mb-0">Str. Bicicletei nr. 10, Craiova</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-phone fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Telefon</h5>
+                                <p class="mb-0">+40 721 123 456</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-envelope fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Email</h5>
+                                <p class="mb-0">contact@rentabike.ro</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="mb-3">Program</h4>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Luni - Vineri
+                        <span class="badge bg-primary rounded-pill">08:00 - 20:00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Sâmbătă
+                        <span class="badge bg-primary rounded-pill">09:00 - 18:00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Duminică
+                        <span class="badge bg-primary rounded-pill">10:00 - 16:00</span>
+                    </li>
+                </ul>
+
+                <h4 class="mb-3">Unde ne găsești în Craiova</h4>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2849.139490294042!2d23.79421531551738!3d44.31851297910199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sCraiova!5e0!3m2!1sen!2sro!4v1620000000000!5m2!1sen!2sro" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Ai întrebări frecvente?</h2>
+        <a asp-controller="Home" asp-action="FAQ" class="btn btn-light btn-lg px-4">Vezi întrebările frecvente</a>
+    </div>
+</section>

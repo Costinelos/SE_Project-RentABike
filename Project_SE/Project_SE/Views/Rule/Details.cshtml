@@ -1,0 +1,16 @@
+﻿@model Project_SE.Models.Rule
+
+@{
+    ViewData["Title"] = "Detalii Regulă";
+}
+
+<div class="container fade-in mt-4">
+    <h2 class="text-white">Detalii Regulă</h2>
+
+    <div class="guideline-card">
+        <h3>@Model.Title</h3>
+        <p>@Model.Description</p>
+    </div>
+
+    <a asp-action="Index" class="btn btn-secondary mt-4">Înapoi la listă</a>
+</div>

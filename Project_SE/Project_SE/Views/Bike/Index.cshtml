@@ -1,32 +1,50 @@
-﻿@* *@
-@model List<Bike>
+﻿@model List<Project_SE.Models.Bike>
+
+@{
+    ViewData["Title"] = "Biciclete";
+}
 
 <h2 class="mt-3">Bicicletele noastre</h2>
 
-<div class="table-responsive mt-3">
-    <table class="table table-bordered">
-        <thead class="table-light">
-            <tr>
-                <th>Model</th>
-                <th>Tip</th>
-                <th>Preț/zi (RON)</th>
-                <th>Disponibilitate</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var bike in Model ?? new List<Bike>())
-            {
-                <tr>
-                    <td>@bike.Model</td>
-                    <td>@bike.Type</td>
-                    <td>@bike.Price</td>
-                    <td>
-                        <span class="badge @(bike.Status == "Disponibil" ? "bg-success" : "bg-warning")">
-                            @bike.Status
-                        </span>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-controller="Admin" asp-action="Create" class="btn btn-success">Adaugă bicicletă nouă</a>
+    </p>
+}
+
+<div class="row mt-4">
+    @foreach (var bike in Model ?? new List<Bike>())
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                @if (!string.IsNullOrEmpty(bike.ImageUrl))
+                {
+                    <img src="@bike.ImageUrl" class="card-img-top" alt="@bike.Model" style="height: 200px; object-fit: cover;">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@bike.Model</h5>
+                    <p class="card-text">@bike.Type</p>
+                    <p class="card-text">Preț: @bike.Price RON/zi</p>
+                    <span class="badge @(bike.Status == "Disponibil" ? "bg-success" : "bg-warning")">
+                        @bike.Status
+                    </span>
+                </div>
+                <div class="card-footer d-flex justify-content-between flex-wrap gap-2">
+                    <a asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info">Detalii</a>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@bike.Id" class="btn btn-danger">Delete</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Reservation" asp-action="Index" asp-route-bikeId="@bike.Id"
+                           class="btn btn-primary">Rezervă bicicletă</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
 </div>

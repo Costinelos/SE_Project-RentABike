@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_SE.Data;
 
@@ -11,9 +12,11 @@ using Project_SE.Data;
 namespace Project_SE.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250512101301_ThirdCreate")]
+    partial class ThirdCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,6 +187,46 @@ namespace Project_SE.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("Profile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AvatarPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("Birthdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Website")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Profiles");
+                });
+
             modelBuilder.Entity("Project_SE.Models.Bike", b =>
                 {
                     b.Property<int>("Id")
@@ -223,7 +266,7 @@ namespace Project_SE.Migrations
                     b.ToTable("Bikes");
                 });
 
-            modelBuilder.Entity("Reservation", b =>
+            modelBuilder.Entity("Project_SE.Models.Reservation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,13 +274,26 @@ namespace Project_SE.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdminNotes")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("BikeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReservationStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -246,6 +302,9 @@ namespace Project_SE.Migrations
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -391,7 +450,18 @@ namespace Project_SE.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Reservation", b =>
+            modelBuilder.Entity("Profile", b =>
+                {
+                    b.HasOne("User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Project_SE.Models.Reservation", b =>
                 {
                     b.HasOne("Project_SE.Models.Bike", "Bike")
                         .WithMany()

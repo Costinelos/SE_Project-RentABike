@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Project_SE.Models.Rule>
+
+@{
+    ViewData["Title"] = "Ghiduri și Reguli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container fade-in mt-4">
+    <h1 class="text-center">Ghiduri și Reguli de Utilizare</h1>
+    <p class="lead text-center">Citește cu atenție ghidurile noastre pentru a folosi forumul AutoHub în mod corect.</p>
+
+    <div class="text-center mt-3">
+        <a asp-action="Create" class="btn btn-success">Adaugă Regula Nouă</a>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+            @foreach (var rule in Model)
+            {
+                <div class="guideline-card mb-4">
+                    <h3>@rule.Title</h3>
+                    <p>@rule.Description</p>
+                    <div class="mt-2">
+                        <a asp-action="Details" asp-route-id="@rule.RuleID" class="btn btn-sm btn-info">Detalii</a>
+                        <a asp-action="Edit" asp-route-id="@rule.RuleID" class="btn btn-sm btn-warning">Editează</a>
+                        <a asp-action="Delete" asp-route-id="@rule.RuleID" class="btn btn-sm btn-danger">Șterge</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
